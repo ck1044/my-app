@@ -11,6 +11,7 @@ import { useModelStore } from "@/store/model";
 import { useParams, useRouter } from "next/navigation";
 import { addMessages, createConversation } from "@/actions/conversation";
 import { CHAT_ROUTES } from "@/constants/routes";
+import { useUserStore } from "@/store/user";
 
 type Props = {
   initialMessages?: TMessage[];
@@ -19,6 +20,7 @@ type Props = {
 export function Chat({ initialMessages }: Props) {
   const router = useRouter();
   const params = useParams<{ conversationId: string }>();
+  const user = useUserStore((state) => state.user);
   const { messages, setMessages, input, handleInputChange, handleSubmit } =
     useChat({
       onFinish: async (message) => {
@@ -51,19 +53,20 @@ export function Chat({ initialMessages }: Props) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
-
+  //user name을 id나 이메일로 하고싶은데, 여기는 csr이라 verifySession이 안됨
+  //그래서 useStore을 사용해서 chat name을 전역으로 관리하겠음!(chat 안에서 유저가 바뀔일은 없으니까)
   return (
     <div className="flex flex-col w-[80%] h-full mx-auto">
       {/* 채팅영역 */}
       <div className="flex-1">
-        {messages.length === 0 ? (
+        {!params.conversationId && messages.length === 0 ? (
           <Empty />
         ) : (
           <>
             {messages.map((message) => (
               <Message
                 key={message.id}
-                name={"user"}
+                name={user.name}
                 content={message.content}
                 role={message.role}
               />
