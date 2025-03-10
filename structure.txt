@@ -1,0 +1,99 @@
+.
+├── 123.TXT
+├── README.md
+├── actions
+│   ├── conversation.ts
+│   ├── login.ts
+│   ├── sessions.ts
+│   └── signup.ts
+├── app
+│   ├── (auth)
+│   │   ├── layout.tsx
+│   │   ├── login
+│   │   └── signup
+│   ├── (chat)
+│   │   ├── c
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── api
+│   │   └── chat
+│   ├── favicon.ico
+│   ├── globals.css
+│   └── layout.tsx
+├── components
+│   ├── auth
+│   │   ├── formCard.tsx
+│   │   ├── formMessage.tsx
+│   │   ├── loginForm.tsx
+│   │   ├── signupForm.tsx
+│   │   └── submit.tsx
+│   ├── chat
+│   │   ├── _logo.tsx
+│   │   ├── autoResizingTextarea.tsx
+│   │   ├── chat.tsx
+│   │   ├── empty.tsx
+│   │   ├── header.tsx
+│   │   ├── logoutButton.tsx
+│   │   ├── message.tsx
+│   │   ├── mobileMenu.tsx
+│   │   ├── modelSelect.tsx
+│   │   ├── sidebar.tsx
+│   │   └── sidebarItem.tsx
+│   └── ui
+│       ├── avatar.tsx
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── dropdown-menu.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── select.tsx
+│       ├── sheet.tsx
+│       └── textarea.tsx
+├── components.json
+├── constants
+│   └── routes.ts
+├── data
+│   ├── conversation.ts
+│   └── user.ts
+├── db
+│   ├── index.ts
+│   └── schema.ts
+├── dependency-graph.png
+├── dependency-graph.svg
+├── drizzle
+│   ├── 0000_chief_darwin.sql
+│   └── meta
+│       ├── 0000_snapshot.json
+│       └── _journal.json
+├── drizzle.config.ts
+├── eslint.config.mjs
+├── hooks
+│   └── useFormValidate.ts
+├── lib
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── logo.png
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── schemas
+│   └── auth.ts
+├── store
+│   ├── model.ts
+│   └── sheet.ts
+├── structure.txt
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.tsbuildinfo
+└── types
+    ├── db.ts
+    └── form.ts
+
+24 directories, 72 files
