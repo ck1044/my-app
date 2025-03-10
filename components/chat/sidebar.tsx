@@ -4,30 +4,26 @@ import { BASE_URL, CHAT_ROUTES } from "@/constants/routes";
 import { SidebarItem } from "./sidebarItem";
 import { LogoutButton } from "./logoutButton";
 import Link from "next/link";
+import { getConversationsByUser } from "@/data/user";
 
-const DUMMY_ITEMS = [
-  {
-    id: "new",
-    label: "새로운 대화",
-    icon: <Plus />,
-    href: BASE_URL,
-  },
-  {
-    id: "1",
-    label:
-      "새로운 긴 대화 예시입니다. 새로운 긴 대화 예시입니다. 새로운 긴 대화 예시입니다.",
-    icon: <MessageSquare />,
-    href: `${CHAT_ROUTES.CONVERSATIONS}/1`,
-  },
-  {
-    id: "2",
-    label: "일반 대화 예시입니다.",
-    icon: <MessageSquare />,
-    href: `${CHAT_ROUTES.CONVERSATIONS}/2`,
-  },
-];
+const NEW_SIDEBAR_ITEMS = {
+  id: "new",
+  label: "새로운 대화",
+  icon: <Plus />,
+  href: BASE_URL,
+};
 
-export function Sidebar() {
+export async function Sidebar() {
+  const conversations = await getConversationsByUser();
+  const formattedItems = [
+    NEW_SIDEBAR_ITEMS,
+    ...conversations.map((conversation) => ({
+      id: conversation.id,
+      label: conversation.name || "",
+      icon: <MessageSquare />,
+      href: `${CHAT_ROUTES.CONVERSATIONS}/${conversation.id}`,
+    })),
+  ];
   return (
     <nav className="h-full p-3 bg-black flex flex-col text-white">
       {/* 로고 영역 + 메뉴 아이템 */}
@@ -39,7 +35,7 @@ export function Sidebar() {
           <h1 className="text-2xl font-bold">Chat GPT</h1>
         </Link>
         <div className="flex flex-col gap-2 mt-10">
-          {DUMMY_ITEMS.map((item) => (
+          {formattedItems.map((item) => (
             <SidebarItem key={item.id} item={item} />
           ))}
           {/* map 으로 묶으면서, 보여준다*/}
