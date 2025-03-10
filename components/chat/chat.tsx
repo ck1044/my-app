@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useChat, Message as TMessage } from "@ai-sdk/react";
 import { AutoResizingTextarea } from "./autoResizingTextarea";
 import { Empty } from "./empty";
@@ -46,7 +46,7 @@ export function Chat({ initialMessages }: Props) {
     if (initialMessages) {
       setMessages(initialMessages);
     }
-  }, []);
+  }, [initialMessages, setMessages]);
 
   useEffect(() => {
     if (scrollRef.current) {
